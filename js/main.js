@@ -125,6 +125,8 @@ $(function(){
 	$("#submitComment").on('click', function(){
 		var content = $("#newComment").val();
 		var time = new Date();
+		var para = window.location.search;
+		var id  = Number(para.substr(1));
 
 		if(content == "" || content == null){
         	alert("Content must not be empty!");
@@ -134,7 +136,7 @@ $(function(){
         var to = dappAddress;
         var value = "0";
         var callFunction = "addComment";
-        var callArgs = "[\"" + content + "\",\"" + time.toGMTString() +  "\"]";
+        var callArgs = "[\"" + content + "\",\"" + time.toGMTString() +  "\",\"" + id + "\"]";
         nebPay.call(to, value, callFunction, callArgs, {
             listener: commentHandle
         });
